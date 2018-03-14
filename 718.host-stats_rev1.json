@@ -87,7 +87,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg without (cpu)(irate(node_cpu{job=\"node\",instance=\"$instance\",mode!=\"idle\"}[5m]))",
+              "expr": "avg without (cpu)(irate(node_cpu{job=\"prometheus_node_exporter\",instance=\"$instance\",mode!=\"idle\"}[5m]))",
               "interval": "",
               "intervalFactor": 2,
               "legendFormat": "{{mode}}",
@@ -168,28 +168,28 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "node_memory_MemTotal{job='node',instance='$instance'} - node_memory_MemFree{job='node',instance='$instance'} - node_memory_Buffers{job='node',instance='$instance'} - node_memory_Cached{job='node',instance='$instance'}",
+              "expr": "node_memory_MemTotal{job='prometheus_node_exporter',instance='$instance'} - node_memory_MemFree{job='prometheus_node_exporter',instance='$instance'} - node_memory_Buffers{job='prometheus_node_exporter',instance='$instance'} - node_memory_Cached{job='prometheus_node_exporter',instance='$instance'}",
               "intervalFactor": 2,
               "legendFormat": "Used",
               "refId": "A",
               "step": 60
             },
             {
-              "expr": "node_memory_Buffers{job='node',instance='$instance'}",
+              "expr": "node_memory_Buffers{job='prometheus_node_exporter',instance='$instance'}",
               "intervalFactor": 2,
               "legendFormat": "Buffers",
               "refId": "B",
               "step": 60
             },
             {
-              "expr": "node_memory_Cached{job='node',instance='$instance'}",
+              "expr": "node_memory_Cached{job='prometheus_node_exporter',instance='$instance'}",
               "intervalFactor": 2,
               "legendFormat": "Cached",
               "refId": "D",
               "step": 60
             },
             {
-              "expr": "node_memory_MemFree{job='node',instance='$instance'}",
+              "expr": "node_memory_MemFree{job='prometheus_node_exporter',instance='$instance'}",
               "hide": false,
               "intervalFactor": 2,
               "legendFormat": "Free",
@@ -274,7 +274,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(node_disk_io_time_ms{job='node',instance='$instance',device!~'^(md\\\\d+$|dm-)'}[5m]) / 1000",
+              "expr": "irate(node_disk_io_time_ms{job='prometheus_node_exporter',instance='$instance',device!~'^(md\\\\d+$|dm-)'}[5m]) / 1000",
               "intervalFactor": 2,
               "legendFormat": "{{device}}",
               "refId": "A",
@@ -349,7 +349,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "1 - node_filesystem_free{job='node',instance='$instance',fstype!='rootfs',mountpoint!~'/(run|var).*',mountpoint!=''} / node_filesystem_size{job='node',instance='$instance'}",
+              "expr": "1 - node_filesystem_free{job='prometheus_node_exporter',instance='$instance',fstype!='rootfs',mountpoint!~'/(run|var).*',mountpoint!=''} / node_filesystem_size{job='prometheus_node_exporter',instance='$instance'}",
               "interval": "",
               "intervalFactor": 2,
               "legendFormat": "{{mountpoint}}",
@@ -431,7 +431,7 @@
           ],
           "targets": [
             {
-              "expr": "(node_filesystem_size{job='node',instance='$instance'} - node_filesystem_free{job='node',instance='$instance'}) / deriv(node_filesystem_free{job='node',instance='$instance',fstype!='rootfs',mountpoint!~'/(run|var).*',mountpoint!=''}[3d]) > 0",
+              "expr": "(node_filesystem_size{job='prometheus_node_exporter',instance='$instance'} - node_filesystem_free{job='prometheus_node_exporter',instance='$instance'}) / deriv(node_filesystem_free{job='prometheus_node_exporter',instance='$instance',fstype!='rootfs',mountpoint!~'/(run|var).*',mountpoint!=''}[3d]) > 0",
               "interval": "",
               "intervalFactor": 2,
               "legendFormat": "{{mountpoint}}",
@@ -492,7 +492,7 @@
         "multiFormat": "glob",
         "name": "instance",
         "options": [],
-        "query": "up{job=\"node\"}",
+        "query": "up{job=\"prometheus_node_exporter\"}",
         "refresh": 1,
         "regex": ".*instance=\"(.*?)\".*",
         "type": "query",
